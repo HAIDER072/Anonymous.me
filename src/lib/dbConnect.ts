@@ -23,8 +23,9 @@ async function dbConnect(): Promise<void> {
   } catch (error) {
     console.error('Database connection failed:', error);
 
-    // Graceful exit in case of a connection error
-    process.exit(1);
+    // Throw the error so the caller can respond appropriately.
+    // Avoid calling process.exit() in serverless environments like Vercel.
+    throw error;
   }
 }
 
