@@ -12,10 +12,9 @@ export async function POST(req: Request) {
     const result = await streamText({
       model: openai.completion('gpt-3.5-turbo-instruct'),
       prompt,
-      maxTokens: 400,
     });
 
-    return result.toDataStreamResponse();
+    return result.toTextStreamResponse();
   } catch (error) {
     if (error instanceof Error) {
       // General error handling
